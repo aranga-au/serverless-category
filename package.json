@@ -1,0 +1,26 @@
+{
+  "name": "serverless-category",
+  "version": "0.0.1",
+  "description": "serverless microservice for category",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aranga-au/serverless-category.git"
+  },
+  "keywords": [
+    "serverless",
+    "lambda"
+  ],
+  "author": "Aranga C. Nanayakkara",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aranga-au/serverless-category/issues"
+  },
+  "homepage": "https://github.com/aranga-au/serverless-category#readme",
+  "dependencies": {
+    "mysql": "^2.11.1"
+  }
+}
