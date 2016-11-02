@@ -4,7 +4,7 @@
     "version": "2016-11-01T09:04:37Z",
     "title": "BudgetMateApi"
   },
-  "host": "api.budget.acnonline.net",
+  "host": "<your host name>",
   "schemes": [
     "https"
   ],
