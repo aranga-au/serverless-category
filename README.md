@@ -2,9 +2,9 @@
 Serverless Restful Microservice based on AWS Lambda
 
 ### Deployment
-clonse the report
-make zip file with content of the folder.
-upload on to lambda
+- clone the repo to your local computer.
+- make zip file with content of the folder.
+- upload on to lambda
 
 need policy  which have correct assess rights
 -check out the /deployment/aws-policy.json
