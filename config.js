@@ -4,11 +4,11 @@ module.exports = function () {
 
     return {
         connectionLimit : 20,
-        host: 'localhost',
+        host: 'rds',
         user: 'root',
-        password: 'password',
+        password: 'cntrfs72',
         port: '3306',
-        database: 'budgetmate'
+        database: 'budget'
     };
 
 };
