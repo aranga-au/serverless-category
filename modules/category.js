@@ -58,7 +58,7 @@ module.exports  = function(dbcon){
         var con = dbcon.create();
         console.log("findByName");
 
-        con.query("select * from category where category_name like '"+name+"%'",function (err,rows){
+        con.query("select * from category where name like '"+name+"%'",function (err,rows){
             console.log(err);
             console.log(rows);
             if (err){
