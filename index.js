@@ -12,8 +12,8 @@ exports.handler = handler;
 
 //definitions
 function handler(event, context, callback) {
-    console.log(event.httpMethod);
-    switch (event.httpMethod){
+    console.log(event.method);
+    switch (event.method){
         case "GET":
             processGet(event,callback);
             break;

@@ -37,10 +37,10 @@ module.exports  = function(dbcon){
             if (err){
                 callback(err,null);
                 return;
-            };
+            }
             if (rows == null || rows.length ==0)
             {
-                callback(null,null);
+                callback(new Error("Invalid category id"));
                 return;
             }
             callback(err,rows[0]);
@@ -65,7 +65,7 @@ module.exports  = function(dbcon){
     }
     function insert(category,callback){
         var con = dbcon.create();
-        if (!category || !category["category_name"])
+        if (!category || !category["name"])
         {
             callback("Empty category");
         }
