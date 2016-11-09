@@ -5,7 +5,7 @@
 var config = require('./config.js')();
 var dbcon = require('./modules/dbconn.js')(config);
 var category = require('./modules/category.js')(dbcon);
-var app = require('./modules/router.js');
+var app = require('aws-lmbda-http');
 
 app.get('/test',function (req,res){
     console.log(req);
