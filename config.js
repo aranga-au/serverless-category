@@ -4,9 +4,9 @@ module.exports = function () {
 
     return {
         connectionLimit : 20,
-        host: 'rds.local.acnonline',
+        host: 'localhost',
         user: 'root',
-        password: 'cntrfs72',
+        password: 'password',
         port: '3306',
         database: 'budget'
     };
