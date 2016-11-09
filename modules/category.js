@@ -32,24 +32,13 @@ module.exports  = function(dbcon){
     function findById(id,callback){
         var con = dbcon.create();
         con.query("select * from category where id = "+id,function (err,rows){
-
             if (err){
-                console.log(err);
-
                 callback(err,null);
-                con.end();
-                return;
             }
-            console.log(rows);
-            if (rows == null || rows.length ==0)
-            {
-
-                console.log(rows);
-                callback(new Error("Invalid category id"));
-                con.end();
-                return;
+            if (rows.length==0){
+                callback(null,null);
             }
-            callback(err,rows[0]);
+            callback(null,rows[0]);
             con.end();
         });
     }

@@ -5,50 +5,52 @@
 var config = require('./config.js')();
 var dbcon = require('./modules/dbconn.js')(config);
 var category = require('./modules/category.js')(dbcon);
+var app = require('./modules/router.js');
 
+app.get('/test',function (req,res){
+    console.log(req);
+
+    if (req.params.name){
+        category.searchByName(req.params.name,function(e,r){
+            if (e){
+                res.sendError(e,'500');
+                return;
+            }
+            res.send(r);
+        });
+        return;
+    }
+    category.list(function (e,r) {
+        if (e){
+            res.sendError(e);
+            return;
+        }
+        res.send(r);
+    });
+});
+
+app.get('/test/{catId}',function (req,res) {
+    var id = +req.pathParams.catId || 0;
+
+    category.findById(id, function (e, r) {
+        if (e) {
+            res.sendError(e, '500');
+            return;
+        }
+        if (!r) {
+            res.sendError({"message": "Invalid category id " + id}, '404');
+            return;
+        }
+        res.send(r);
+    })
+});
+
+
+app.post('/test',function (req,res) {
+    category.insert(req.body, function (e, r) {
+        callback(null, resp.create(r, '201'));
+    });
+});
 // This is the handler that's invoked by Lambda
 // Most of this code is boilerplate; use as is
-exports.handler = handler;
-
-//definitions
-function handler(event, context, callback) {
-    console.log(event.method);
-    switch (event.method){
-        case "GET":
-            processGet(event,callback);
-            break;
-        case "POST":
-            processPost(event,callback);
-            break;
-        case "PUT":
-            processPut(event,callback);
-            break;
-        default:
-            callback("not implemented");
-    }
-
-}
-
-function processGet(event,callback) {
-
-    console.log("processGet()");
-    if (event.params.querystring && event.params.querystring['name']){
-    
-        category.searchByName(event.params.querystring.name,callback);
-        return;
-    }
-    if (event.params.path && event.params.path['catId']){
-    
-        category.findById(event.params.path.catId,callback);
-        return;
-    }
-    category.list(callback);
-   
-}
-
-function processPost(event,callback) {
-   category.insert(event.body,callback);
-}
-function processPut(event,callback) {
-    callback("not implemented yet");
-}
+exports.handler = app.handler;
