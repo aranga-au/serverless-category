@@ -7,7 +7,8 @@ var dbcon = require('./modules/dbconn.js')(config);
 var category = require('./modules/category.js')(dbcon);
 var app = require('aws-lambda-http');
 
-app.get('/test',function (req,res){
+//get all
+app.get('/category',function (req,res){
     console.log(req);
 
     if (req.params.name){
@@ -29,7 +30,8 @@ app.get('/test',function (req,res){
     });
 });
 
-app.get('/test/{catId}',function (req,res) {
+//get by id
+app.get('/category/{catId}',function (req,res) {
     var id = +req.pathParams.catId || 0;
 
     category.findById(id, function (e, r) {
@@ -42,15 +44,27 @@ app.get('/test/{catId}',function (req,res) {
             return;
         }
         res.send(r);
-    })
-});
-
-
-app.post('/test',function (req,res) {
-    category.insert(req.body, function (e, r) {
-        callback(null, resp.create(r, '201'));
     });
 });
+//update
+app.put('/category/{catId}',function (req,res) {
+    var id = +req.pathParams.catId || 0;
+    //code needed
+    res.send({"id":id});
+});
+
+//insert
+app.post('/category',function (req,res) {
+    category.insert(req.body,function (e,r) {
+       if (e){
+           res.sendError(e);
+           return;
+       }
+       res.send(r,'201');
+    });
+});
+
+
 // This is the handler that's invoked by Lambda
 // Most of this code is boilerplate; use as is
 exports.handler = app.handler;

@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/aranga-au/serverless-category#readme",
   "dependencies": {
-    "aws-lambda-http": "^1.0.0",
+    "aws-lambda-http": "^1.0.5",
     "lodash": "^4.16.6",
     "mysql": "^2.11.1"
   }

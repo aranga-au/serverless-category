@@ -61,9 +61,10 @@ module.exports  = function(dbcon){
     }
     function insert(category,callback){
         var con = dbcon.create();
+
         if (!category || !category["name"])
         {
-            callback("Empty category");
+            callback({"message":"invalid category object"},null);
             con.end();
             return;
         }
@@ -82,7 +83,7 @@ module.exports  = function(dbcon){
             }
             console.log("succesful inserted [id:"+resp.insertId+"]");
             category["id"] = resp.insertId;
-            callback(err,category);
+            callback(null,category);
             con.end();
         });
     }
